@@ -25,12 +25,14 @@ BASE_DATOS = [
 		"condicion_salud": 'Alergia a la penicilina',
 		"rol": 'Estudiante',
 	},
+	{
 		"id": 4,
 		"nombre": 'Juan Nepomuseno Gomez Chavez',
 		"correo": 'nepomuseno@correo.com',
 		"grupo": 'Grupo B',
 		"condicion_salud": 'N/A',
 		"rol": 'Estudiante',
+	},
 	{
 		"id": 5,
 		"nombre": 'Enrique Batman Allen Wayne',
