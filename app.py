@@ -5,10 +5,10 @@ app = Flask(__name__)
 import Registro
 
 #Endpoint 1: Perfil General (solo información básica)
-@app.route("/api/perfil/<int:id>", method=["GET"])
+@app.route("/api/perfil/<int:id>", methods=["GET"])
 def ver_perfil(id):
 	#Buscamos el usuario por su ID en la colección local
-	usuario = next((u for u in BASE_DATOS if u["id"] == id), None)
+	usuario = next((u for u in Registro.BASE_DATOS if u["id"] == id), None)
 
 	if not usuario:
 		return jsonify({"error": "Recurso no encontrado"}), 404
@@ -27,7 +27,7 @@ def ver_perfil(id):
 #Endpoint 2: Expediente (incluye información sensible)
 @app.route("/api/expediente/<int:id>", methods=["GET"])
 def ver_expedientes(id):
-	usuario = next((u for u in BASE_DATOS if u["id"] == id), None)
+	usuario = next((u for u in Registro.BASE_DATOS if u["id"] == id), None)
 
 	if not usuario:
 		return jsonify({"error": "Recurso no encontrado"}), 404
@@ -45,4 +45,4 @@ def ver_expedientes(id):
 	return jsonify(expediente), 200
 
 if __name__ == "__main__":
-	app.run(debud=True, port=5000)
+	app.run(debug=True, port=5000)
