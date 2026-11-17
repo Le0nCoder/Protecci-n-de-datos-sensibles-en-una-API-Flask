@@ -12,13 +12,13 @@ def obtener_usuario_actual(request_obj):
 	except ValueError:
 		return 0, "invitado"
 
-	#Endpoit de Peril conm verificación de acceso
+	#Endpoit de Perfil conm verificación de acceso
 	@app.route("/api/perfil/<int:id>", methods = ["GET"])
 
-	def ver_perfi(id):
+	def ver_perfil(id):
 		current_id, current_rol = obtener_usuario_actual(request)
 
-		usurio = next((u for u in Registro.BASE_DATOS if u ['id'] == id), None)
+		usuario = next((u for u in Registro.BASE_DATOS if u ['id'] == id), None)
 
 		if not usuario:
 			return jsonify({'error': 'Recurso no encontrado'}), 404
@@ -31,16 +31,16 @@ def obtener_usuario_actual(request_obj):
 
 		#Minimizacion de datos: Excluimos 'condicion_salud'
 		perfil_filtrado = {
-			"id": usuairo['id'],
+			"id": usuario['id'],
 			"nombre": usuario['nombre'],
-			"corre": usuario['correo'],
+			"correo": usuario['correo'],
 			"grupo": usuario['grupo'],
 		}
 		return jsonify(perfil_filtrado), 200
 
 	#Endpoint de expediente con autorizacion estricta por rol
 	@app.rout("/api/expediente/<int:id>", methods=["GET"])
-	def ver_expedienet():
+	def ver_expediente(id):
 		_, current_rol = obtener_usuario_actual(request)
 
 		#Verificacion de autorizacion: Solo el rol 'encargado' puede ver expedientes sensibles
@@ -55,7 +55,7 @@ def obtener_usuario_actual(request_obj):
 
 		#Expediente completo con datos sensibles para personal autorizado
 		expediente = {
-			"id": uuario["id"],
+			"id": usuario["id"],
 			"nombre": usuario["nombre"],
 			"correo": usuario["correo"],
 			"grupo": usuario["grupo"],

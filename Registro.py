@@ -7,7 +7,7 @@ BASE_DATOS = [
 		"correo": 'tonystak@avengers.com',
 		"grupo": 'Grupo A',
 		"condicion_salud": 'Desnutrición severa',
-		"rol": 'Encargado',
+		"rol": 'encargado',
 	},
 	{
 		"id": 2,
@@ -15,7 +15,7 @@ BASE_DATOS = [
 		"correo": 'hulkeate@avengers.com',
 		"grupo": 'Grupo B',
 		"condicion_salud": 'Asma Leve Controlado',
-		"rol": 'Estudiante',
+		"rol": 'estudiante',
 	},
 	{
 		"id": 3,
@@ -23,7 +23,7 @@ BASE_DATOS = [
 		"correo": 'nolan@correo.com',
 		"grupo": 'Grupo A',
 		"condicion_salud": 'Alergia a la penicilina',
-		"rol": 'Estudiante',
+		"rol": 'estudiante',
 	},
 	{
 		"id": 4,
@@ -31,7 +31,7 @@ BASE_DATOS = [
 		"correo": 'nepomuseno@correo.com',
 		"grupo": 'Grupo B',
 		"condicion_salud": 'N/A',
-		"rol": 'Estudiante',
+		"rol": 'estudiante',
 	},
 	{
 		"id": 5,
@@ -39,6 +39,6 @@ BASE_DATOS = [
 		"correo": 'redhood@correo.com',
 		"grupo": 'Grupo A',
 		"condicion_salud": 'N/A',
-		"rol": 'Estudiante',
+		"rol": 'estudiante',
 	},
 ]
