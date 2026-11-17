@@ -1,8 +1,7 @@
 from flask import Flask, jsonify, request
+import Registro
 
 app = Flask(__name__)
-
-import Registro
 
 #Endpoint 1: Perfil General (solo información básica)
 @app.route("/api/perfil/<int:id>", methods=["GET"])
