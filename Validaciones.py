@@ -1,4 +1,4 @@
-import flask import Flask, jsonify, request
+from flask import Flask, jsonify, request
 import Registro
 
 app = Flask(__name__)
@@ -44,7 +44,7 @@ def obtener_usuario_actual(request_obj):
 		_, current_rol = obtener_usuario_actual(request)
 
 		#Verificacion de autorizacion: Solo el rol 'encargado' puede ver expedientes sensibles
-		if current_rol != "encargado"
+		if current_rol != "encargado":
 			return(
 				jsonify({ "error": "Permisos insuficientes. Se requiere  rol de encargado"}), 403,
 			)
@@ -64,4 +64,4 @@ def obtener_usuario_actual(request_obj):
 		return jsonify(expediente), 200
 
 if __name__ == "__main__":
-	app.run(depug=True, port=5000)
+	app.run(debug=True, port=5000)
