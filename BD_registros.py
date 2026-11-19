@@ -1,4 +1,4 @@
-BD_REGISTROS = [
+BD_REGISTROS = {
 	1: {
 		"id": 1, 
 		"nombre": "Ana Perez", 
@@ -34,16 +34,16 @@ BD_REGISTROS = [
 	5: {
 		"id": 5,
 		"nombre": "Sofia Morales",
-		"correo": "sofi.morales@ejemplo.com"
-		"fecha_reserva": "2026-96-14"
-		"condicion_salud": "Ninguna
+		"correo": "sofi.morales@ejemplo.com",
+		"fecha_reserva": "2026-96-14",
+		"condicion_salud": "Ninguna",
 		"propietario_id": "estudiante_5"
 	},
 	6: {
-		"id": 6
-		"nombre": "Mateo Vargas"
-		"correo": "mativargas@ejemplo.com"
-		"fecha_reserva": "2026-06-15"
+		"id": 6,
+		"nombre": "Mateo Vargas",
+		"correo": "mativargas@ejemplo.com",
+		"fecha_reserva": "2026-06-15",
 		"propietario_id": "estudiante_6"
 	}
-]
+}
