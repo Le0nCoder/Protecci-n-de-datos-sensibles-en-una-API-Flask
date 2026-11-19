@@ -32,7 +32,7 @@ def get_reservas(id):
 	#Control de autorizacion (Estudiante solo ve su propio recurso, Encargado ve todo)
 	if usuario["rol"] == "estudiante" and registro["propietario_id"] != usuario["user_id"]:
 		logger.warning("actor_id = %s operacion = GET_RESERVA estado = 403_DENEGADO", usuario["user_id"])
-		return jsonify({"error": "Acceso no autorizado al recurso ajeno"}), 401
+		return jsonify({"error": "Acceso no autorizado al recurso ajeno"}), 403
 
 	#Respuesta minimizada (excluyendo correo completo, ID de propietario y salud)
 	respuesta = {
@@ -52,7 +52,13 @@ def get_salud(id):
 
 	if not registro:
 		logger.info("actor = %s operacion = GET_SALUD estado = 404", usuario["user_id"])
-		return jsonify({"error": "Acceso Restringido. Se requiere roi de encargado"}), 403
+		return jsonify({"error": "Acceso Restringido. Se requiere rol de encargado"}), 403
+
+	#Autorizacion estricta
+
+	if usuario["rol"] != "encargado":
+		logger.warning("actor_id = %s operacion = GET_SALUD estado = 403_DENEGADO_SENSIBLE", usuario["user_id"])
+		return jsonify({"error": "Registro no encontrado"}), 404
 
 	#Minimizacion de salud
 	respuesta = {
@@ -60,7 +66,7 @@ def get_salud(id):
 		"condicion_salud": registro["condicion_salud"]
 	}
 	logger.info("actor_id = %s operacion = GET_SALUD estado = 200", usuario["user_id"])
-	return jsdonify(respuesta), 200
+	return jsonify(respuesta), 200
 
 if __name__ == "__main__":
 	app.run(debug = True, port = 5000)
