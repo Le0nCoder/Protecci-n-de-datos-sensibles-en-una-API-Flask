@@ -58,7 +58,7 @@ def get_salud(id):
 
 	if usuario["rol"] != "encargado":
 		logger.warning("actor_id = %s operacion = GET_SALUD estado = 403_DENEGADO_SENSIBLE", usuario["user_id"])
-		return jsonify({"error": "Acceso restringido. Se requiere rol de encargado"}), 404
+		return jsonify({"error": "Acceso restringido. Se requiere rol de encargado"}), 403
 
 	#Minimizacion de salud
 	respuesta = {

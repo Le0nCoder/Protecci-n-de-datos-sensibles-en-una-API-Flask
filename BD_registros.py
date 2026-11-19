@@ -11,7 +11,7 @@ BD_REGISTROS = {
 		"id": 2,
 		"nombre": "Carlos Gomez",
 		"correo": "carlos.gomez@ejemplo.com",
-		"fecha_reservacion": "2026-06-12",
+		"fecha_reserva": "2026-06-12",
 		"condicion_salud": "Ninguna",
 		"propietario_id": "estudiante_2"
 	},
@@ -19,7 +19,7 @@ BD_REGISTROS = {
 		"id": 3,
 		"nombre": "Elena Ruiz",
 		"correo": "elena.ruiz@ejemplo.com",
-		"fecha_reservacion": "2026-06-12",
+		"fecha_reserva": "2026-06-12",
 		"conidicion_salud": "Alergia a la penicilina",
 		"propietario_salud": "estudiante_3"
 	},
