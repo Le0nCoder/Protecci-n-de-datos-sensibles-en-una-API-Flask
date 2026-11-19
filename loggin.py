@@ -5,7 +5,7 @@ import BD_registros as BD
 app = Flask(__name__)
 
 #Configuracion de Loggin seguro (solo registra actor, operacion y estado)
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(leveltime)s] %(messange)s")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("api_audit")
 
 
@@ -14,14 +14,14 @@ def obtener_contexto_usuario():
 	Simula la extraccion de identidad y rol mediante cabeceras HTTP
 	'''
 	return {
-		"user_id": request.header.get("X-User-Id", "anonimo"),
-		"rol": request.header.get("X-User-Rol", "invitado")
+		"user_id": request.headers.get("X-User-Id", "anonimo"),
+		"rol": request.headers.get("X-User-Rol", "invitado")
 	}
 
 #Ruta de reservas con minimizacion (sin condicion_salud ni secretos)
 @app.route("/api/reservas/<int:id>", methods = ["GET"])
 def get_reservas(id):
-	usuario = obtener_contexto_usuario(),
+	usuario = obtener_contexto_usuario()
 	registro = BD.BD_REGISTROS.get(id)
 
 	if not registro:
@@ -32,13 +32,13 @@ def get_reservas(id):
 	#Control de autorizacion (Estudiante solo ve su propio recurso, Encargado ve todo)
 	if usuario["rol"] == "estudiante" and registro["propietario_id"] != usuario["user_id"]:
 		logger.warning("actor_id = %s operacion = GET_RESERVA estado = 403_DENEGADO", usuario["user_id"])
-	return jsonify({"error": "Acceso no autorizado al recurso ajeno"}), 401
+		return jsonify({"error": "Acceso no autorizado al recurso ajeno"}), 401
 
 	#Respuesta minimizada (excluyendo correo completo, ID de propietario y salud)
 	respuesta = {
-		"id": registrp["id"],
+		"id": registro["id"],
 		"nombre": registro["nombre"],
-		"fecha_reserva": reserva["fecha_reserva"]
+		"fecha_reserva": registro["fecha_reserva"]
 	}
 
 	logger.info("actor_id = %s operacion = GET_RESERVA estado = 200", usuario["user_id"])
@@ -48,11 +48,11 @@ def get_reservas(id):
 @app.route("/api/salud/<int:id>", methods = ["GET"])
 def get_salud(id):
 	usuario = obtener_contexto_usuario()
-	registro = BD.BD_REGISTRO.get(id)
+	registro = BD.BD_REGISTROS.get(id)
 
 	if not registro:
 		logger.info("actor = %s operacion = GET_SALUD estado = 404", usuario["user_id"])
-	return jsonify({"error": "Acceso Restringido. Se requiere roi de encargado"}), 403
+		return jsonify({"error": "Acceso Restringido. Se requiere roi de encargado"}), 403
 
 	#Minimizacion de salud
 	respuesta = {
@@ -60,6 +60,7 @@ def get_salud(id):
 		"condicion_salud": registro["condicion_salud"]
 	}
 	logger.info("actor_id = %s operacion = GET_SALUD estado = 200", usuario["user_id"])
+	return jsdonify(respuesta), 200
 
 if __name__ == "__main__":
 	app.run(debug = True, port = 5000)
