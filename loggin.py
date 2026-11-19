@@ -51,14 +51,14 @@ def get_salud(id):
 	registro = BD.BD_REGISTROS.get(id)
 
 	if not registro:
-		logger.info("actor = %s operacion = GET_SALUD estado = 404", usuario["user_id"])
-		return jsonify({"error": "Acceso Restringido. Se requiere rol de encargado"}), 403
+		logger.info("actor_id = %s operacion = GET_SALUD estado = 404", usuario["user_id"])
+		return jsonify({"error": "Registro no encontrado"}), 404
 
 	#Autorizacion estricta
 
 	if usuario["rol"] != "encargado":
 		logger.warning("actor_id = %s operacion = GET_SALUD estado = 403_DENEGADO_SENSIBLE", usuario["user_id"])
-		return jsonify({"error": "Registro no encontrado"}), 404
+		return jsonify({"error": "Acceso restringido. Se requiere rol de encargado"}), 404
 
 	#Minimizacion de salud
 	respuesta = {
