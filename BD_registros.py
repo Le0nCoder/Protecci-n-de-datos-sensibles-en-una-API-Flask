@@ -20,8 +20,8 @@ BD_REGISTROS = {
 		"nombre": "Elena Ruiz",
 		"correo": "elena.ruiz@ejemplo.com",
 		"fecha_reserva": "2026-06-12",
-		"conidicion_salud": "Alergia a la penicilina",
-		"propietario_salud": "estudiante_3"
+		"condicion_salud": "Alergia a la penicilina",
+		"propietario_id": "estudiante_3"
 	},
 	4: {
 		"id": 4,
@@ -35,7 +35,7 @@ BD_REGISTROS = {
 		"id": 5,
 		"nombre": "Sofia Morales",
 		"correo": "sofi.morales@ejemplo.com",
-		"fecha_reserva": "2026-96-14",
+		"fecha_reserva": "2026-06-14",
 		"condicion_salud": "Ninguna",
 		"propietario_id": "estudiante_5"
 	},
@@ -44,6 +44,7 @@ BD_REGISTROS = {
 		"nombre": "Mateo Vargas",
 		"correo": "mativargas@ejemplo.com",
 		"fecha_reserva": "2026-06-15",
+		"condicion_salud": "Ninguna",
 		"propietario_id": "estudiante_6"
 	}
 }
