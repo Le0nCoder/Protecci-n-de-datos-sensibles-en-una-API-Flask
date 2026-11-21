@@ -32,8 +32,8 @@ def get_reservas(id):
 	#Control de autorizacion (Estudiante solo ve su propio recurso, Encargado ve todo)
 	''' Contro de autorizacion (denegacion por defecto) '''
 
-	es_encargado = usuario["rol"] == encargado
-	es_propietario = usuario["rol"] == "estudiante" and registro["propietario_id"] == usuario[a"id"]
+	es_encargado = usuario["rol"] == "encargado"
+	es_propietario = usuario["rol"] == "estudiante" and registro["propietario_id"] == usuario["user_id"]
 
 	if not (es_encargado or es_propietario):
 		logger.warning("actor_id = %s operacion = GET_RESERVA estado = 403_DENEGADO", usuario["user_id"])
